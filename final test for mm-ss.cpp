@@ -32,11 +32,24 @@ int main() {
 	
 	cout << endl << endl;				// Some space
     
+    // Convert seconds to mm:ss again
+	int s2 = times / 60;
+	int rest = times % 60;
 	
+	// Get the average
+	int avrs = times / amount;
+	int a1 = avrs / 60;
+	int a2 = avrs % 60;
 	
-	// output
-	cout << times << endl;
-        
+	// Output
+	cout << "   Total:" << endl;
+	cout << times << endl;				// Seconds
+	cout << s2 << ":" << rest;			// mm:ss
+	// Output2
+	cout << endl << "   Average:" << endl;
+	cout << avrs << endl;				// Seconds
+	cout << a1 << ":" << a2;			// mm:ss
+	cout << endl;
   return 0;
 }
 

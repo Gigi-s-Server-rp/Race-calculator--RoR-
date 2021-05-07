@@ -1,6 +1,7 @@
 #include <iostream>
-#include <string>
 #include <cmath>
+#include <string>
+#include <sstream>
 using namespace std;
 
 
@@ -16,8 +17,16 @@ int main() {
 	int positions[30]; // 30 Positions can be used max
 	int sectimes[30];
 	
+	int times;
 	
-  cout << "!This is a test version!\n"; // !--! Are announcements. This will be removed at some point
+	int s2;
+	int rest;
+	
+	int avrs;
+	int a1;
+	int a2;
+	
+	cout << "Version:    1.0\n\n";						// Change this with every version
   cout << "Choose between position and time\n(P/T): "; // Laps are for times. Races are for positions
   cin >> type;
   
@@ -46,8 +55,43 @@ int main() {
   	// Check the time format
   if (format == 1) {
   	cout << "mm:ss format has been choosen";
-  	// NOT DONE HERE
-  	cout << "\n!This is not supported yet!";
+  	// Just ignore the mess in here
+	times = 0;
+	
+	
+	string temp;
+	int t3 = 0;
+
+	cout << endl << "Times:\n";
+	// Get all the inputs from the user
+	for (int i = 0; i < laps; i++) {
+		cin >> temp;					// Get the input in a temp. string
+		// Extract every single digit needed
+		int m10 = temp[0] - '0';
+  	    int m01 = temp[1] - '0';
+ 		int s10 = temp[3] - '0';
+ 		int s01 = temp[4] - '0';
+ 		// Construct the second temp. variable
+ 		// Do some math and put the times in t3
+ 		t3 = (m10 * 10 + m01) * 60 + (s10 * 10 + s01);
+		times += t3; 
+	}
+	
+	cout << endl << endl;				// Some space
+    
+    // Convert seconds to mm:ss again
+	s2 = times / 60;
+	rest = times % 60;
+	
+	avrs = times / laps;
+	a1 = avrs / 60;
+	a2 = avrs % 60;
+	
+	
+  	
+  	
+  	// End of my bullshit
+  	
   } else if (format == 2) {
   	cout << "Seconds format has been choosen";
   	cout << "\nTell me every lap time:\n";
@@ -70,31 +114,42 @@ int main() {
   	return 501;
   }
   
-  // Everything has been set up. Calculate and output now
+  
+  // Output
   
   
- 
+  if (type == 'P' || type == 'p') {
+  	cout << "\nRaces: " << races;
+  	cout << "\nPositions: ";			
+  	for (int i = 0; i < races; ++i) {	
+        cout << positions[i] << "  ";	
+    }
+    cout << endl;
+    return 500;
+  }
   
-  cout << "\n   End of calculation";
   
-  
-  
-  // Debug
-  // Output the settings
-  cout << "\nType: " << type;
-  cout << "\nRaces: " << races;
-  cout << "\nLaps: " << laps;
-  cout << "\nFormat: " << format;		
-  cout << "\n   Data";					// Structure
-  										// Output Data from here
-  cout << "\nPositions: ";				// Output every position
-  for (int i = 0; i < races; ++i) {		// Output every position
-        cout << positions[i] << "  ";	// Output every position
-    }									// Output every position
-    cout << "\nTimes: ";				// Output every time
-  for (int i = 0; i < laps; ++i) {		// Output every time
-        cout << sectimes[i] << "  ";	// Output every time
-    }									// Output every time
-    cout << "\n!This is just a debug version, the stable version will be launched soon!";
+  if (laps >= 1 && format == 1) {
+  	cout << "\nLaps: " << laps;
+  	// Output1
+	cout << "\n   Total:" << endl;
+	cout << times << endl;				// Seconds
+	cout << s2 << ":" << rest;			// mm:ss
+	// Output2
+	cout << endl << "   Average:" << endl;
+	cout << avrs << endl;				// Seconds
+	cout << a1 << ":" << a2;			// mm:ss
+	cout << endl;
+	return 500;
+    } else if (laps >= 1 && format == 2) {
+    	cout << "\nLaps: " << laps;
+    	cout << "\nTimes: ";				
+  		for (int i = 0; i < laps; ++i) {	
+        cout << sectimes[i] << "  ";
+	}
+	cout << endl;
+	return 500;
+  }
+  cout << "\n\n   Fatal error";
   return 0;
 }
