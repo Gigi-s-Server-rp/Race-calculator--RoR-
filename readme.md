@@ -2,8 +2,8 @@
 My first real Project using C++. I want to create a calculator for lap-times. This will be used for my Events (RoR mp).
 
 ## Checklist
-- [ ] Create the calculator
-- [ ] Create the input option
+- [X] Create the calculator
+- [X] Create the input option
 - [ ] Release Alpha
 - [ ] Do some changes
 - [ ] Release Beta
